@@ -1,0 +1,132 @@
+/* Typography
+--------------------------------------------- */
+@import "typography/typography";
+
+/* Elements
+--------------------------------------------- */
+@import "elements/body";
+@import "elements/media";
+
+/* Links
+--------------------------------------------- */
+@import "elements/links";
+
+.site-header {
+    .site-branding {
+        .catalog-site-site-description {
+            font-size: 36px;
+            @include font_main_light();
+        }
+    }
+}
+
+.side-nav {
+    ul {
+        li {
+            padding: 0px;
+            margin: 0px;
+            a {
+                font-size: 1.80rem;
+                color: $black;
+                &:hover {
+                    color: $red;
+                }
+            }
+        }
+        li.current-menu-item {
+            a {
+                color: $red;
+            }
+        }
+    }
+}
+
+.app-box {
+    img {
+        @include transition(0.5s);
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }    
+    p, 
+    h3 {
+        color: $black;
+    }
+    p {
+        @include txt_larg;
+    }
+    .title-outer {
+        width: 89%;
+        vertical-align: top;
+        position: relative;
+        padding-left: 10px;
+        &::before {
+            content: "";
+            position: absolute;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-bottom: 25px solid $white;
+            top: -15px;
+            left: 7px;
+        }
+        &:hover {
+            a h3 {
+                color: $red;
+            }
+        }
+    }
+    .icon-outer {
+        width: 10%;
+        i {
+            font-size: 22px;
+            color: $black;
+        }
+    }
+    &:hover{
+        img {
+            filter: none;
+            -webkit-filter: grayscale(0%);
+        }
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    
+}
+/*-----------------From small Mobile View to Tablet View (bootstrap .col to .col-lg)-----------------*/
+@media only screen and (max-width: 1199px) {
+
+}
+/*-----------------From small Mobile View to Tablet View (bootstrap .col to .col-md)-----------------*/
+@media only screen and (max-width: 991px) {
+    .site-header {
+        .site-branding {
+            .catalog-site-site-description {
+                font-size: 30px;
+            }
+        }
+    }
+    .app-box {
+        .title-outer {
+            width: 85%;
+        }
+    }
+}
+/*-----------------From Small Mobile View to large mobile view (bootstrap .col to .col-sm)-----------------*/
+@media only screen and (max-width: 767px) {
+    .site-header {
+        .site-branding {
+            .catalog-site-site-description {
+                font-size: 36px;
+                @include font_main_light();
+            }
+        }
+    }
+}
+/*-----------------Small Mobile View (bootstrap .col)-----------------*/
+@media only screen and (max-width: 575px) {
+    .app-box {
+        .title-outer {
+            width: 89%;
+        }
+    }
+}

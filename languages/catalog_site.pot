@@ -1,0 +1,338 @@
+# Copyright (C) 2021 Bhavik Ker
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Catalog Site 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/kit_theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-08-25T20:25:50+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: catalog_site\n"
+
+#. Theme Name of the theme
+msgid "Catalog Site"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "http://underscores.me/"
+msgstr ""
+
+#. Description of the theme
+msgid "Build a new WordPress theme from scratch"
+msgstr ""
+
+#. Author of the theme
+msgid "Bhavik Ker"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://github.com/bhavsinh-ker"
+msgstr ""
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: 404.php:30
+msgid "Most Used Categories"
+msgstr ""
+
+#. translators: %1$s: smiley
+#: 404.php:48
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:35
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:68
+msgid "Comments are closed."
+msgstr ""
+
+#: functions.php:53
+msgid "Primary"
+msgstr ""
+
+#: functions.php:127
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:129
+msgid "Add widgets here."
+msgstr ""
+
+#: header.php:49
+msgid "All apps"
+msgstr ""
+
+#: header.php:72
+msgid "Primary Menu"
+msgstr ""
+
+#: inc/template-functions.php:46
+msgctxt "Post type general name"
+msgid "Phone Apps"
+msgstr ""
+
+#: inc/template-functions.php:47
+msgctxt "Post type singular name"
+msgid "Phone App"
+msgstr ""
+
+#: inc/template-functions.php:48
+msgctxt "Admin Menu text"
+msgid "Phone Apps"
+msgstr ""
+
+#: inc/template-functions.php:49
+msgctxt "Add New on Toolbar"
+msgid "Phone App"
+msgstr ""
+
+#: inc/template-functions.php:50
+msgid "Add New"
+msgstr ""
+
+#: inc/template-functions.php:51
+msgid "Add New Phone App"
+msgstr ""
+
+#: inc/template-functions.php:52
+msgid "New Phone App"
+msgstr ""
+
+#: inc/template-functions.php:53
+msgid "Edit Phone App"
+msgstr ""
+
+#: inc/template-functions.php:54
+msgid "View Phone App"
+msgstr ""
+
+#: inc/template-functions.php:55
+msgid "All Phone Apps"
+msgstr ""
+
+#: inc/template-functions.php:56
+msgid "Search Phone Apps"
+msgstr ""
+
+#: inc/template-functions.php:57
+msgid "Parent Phone Apps:"
+msgstr ""
+
+#: inc/template-functions.php:58
+msgid "No Phone Apps found."
+msgstr ""
+
+#: inc/template-functions.php:59
+msgid "No Phone Apps found in Trash."
+msgstr ""
+
+#: inc/template-functions.php:60
+msgctxt "Overrides the \"Featured Image\" phrase for this post type. Added in 4.3"
+msgid "Phone App Cover Image"
+msgstr ""
+
+#: inc/template-functions.php:61
+msgctxt "Overrides the \"Set featured image\" phrase for this post type. Added in 4.3"
+msgid "Set cover image"
+msgstr ""
+
+#: inc/template-functions.php:62
+msgctxt "Overrides the \"Remove featured image\" phrase for this post type. Added in 4.3"
+msgid "Remove cover image"
+msgstr ""
+
+#: inc/template-functions.php:63
+msgctxt "Overrides the \"Use as featured image\" phrase for this post type. Added in 4.3"
+msgid "Use as cover image"
+msgstr ""
+
+#: inc/template-functions.php:64
+msgctxt "The post type archive label used in nav menus. Default \"Post Archives\". Added in 4.4"
+msgid "Phone App archives"
+msgstr ""
+
+#: inc/template-functions.php:65
+msgctxt "Overrides the \"Insert into post\"/\"Insert into page\" phrase (used when inserting media into a post). Added in 4.4"
+msgid "Insert into Phone App"
+msgstr ""
+
+#: inc/template-functions.php:66
+msgctxt "Overrides the \"Uploaded to this post\"/\"Uploaded to this page\" phrase (used when viewing media attached to a post). Added in 4.4"
+msgid "Uploaded to this Phone App"
+msgstr ""
+
+#: inc/template-functions.php:67
+msgctxt "Screen reader text for the filter links heading on the post type listing screen. Default \"Filter posts list\"/\"Filter pages list\". Added in 4.4"
+msgid "Filter Phone Apps list"
+msgstr ""
+
+#: inc/template-functions.php:68
+msgctxt "Screen reader text for the pagination heading on the post type listing screen. Default \"Posts list navigation\"/\"Pages list navigation\". Added in 4.4"
+msgid "Phone Apps list navigation"
+msgstr ""
+
+#: inc/template-functions.php:69
+msgctxt "Screen reader text for the items list heading on the post type listing screen. Default \"Posts list\"/\"Pages list\". Added in 4.4"
+msgid "Phone Apps list"
+msgstr ""
+
+#: inc/template-functions.php:95
+msgctxt "taxonomy general name"
+msgid "Operating Systems"
+msgstr ""
+
+#: inc/template-functions.php:96
+msgctxt "taxonomy singular name"
+msgid "Operating System"
+msgstr ""
+
+#: inc/template-functions.php:97
+msgid "Search Operating Systems"
+msgstr ""
+
+#: inc/template-functions.php:98
+msgid "All Operating Systems"
+msgstr ""
+
+#: inc/template-functions.php:99
+msgid "Parent Operating System"
+msgstr ""
+
+#: inc/template-functions.php:100
+msgid "Parent Operating System:"
+msgstr ""
+
+#: inc/template-functions.php:101
+msgid "Edit Operating System"
+msgstr ""
+
+#: inc/template-functions.php:102
+msgid "Update Operating System"
+msgstr ""
+
+#: inc/template-functions.php:103
+msgid "Add New Operating System"
+msgstr ""
+
+#: inc/template-functions.php:104
+msgid "New Operating System Name"
+msgstr ""
+
+#: inc/template-functions.php:105
+msgid "Operating System"
+msgstr ""
+
+#. translators: %s: post date.
+#: inc/template-tags.php:30
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#. translators: %s: post author.
+#: inc/template-tags.php:46
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:63
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:66
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:70
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:73
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: inc/template-tags.php:83
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#. translators: %s: Name of current post. Only visible to screen readers
+#: inc/template-tags.php:100
+#: template-parts/content-page.php:41
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#. translators: %s: search query.
+#: search.php:21
+msgid "Search Results for: %s"
+msgstr ""
+
+#: single.php:23
+msgid "Previous:"
+msgstr ""
+
+#: single.php:24
+msgid "Next:"
+msgstr ""
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr ""
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content-none.php:24
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:37
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:44
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:27
+#: template-parts/content.php:53
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content-phone-apps-list.php:57
+msgid "Phone Apps Not Found"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content.php:40
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Home Page"
+msgstr ""

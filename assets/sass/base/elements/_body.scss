@@ -1,0 +1,6 @@
+body {
+    @include font_main_regular;
+    @include txt_reg;
+    @include no_mar_pad;
+    color: $black;
+}

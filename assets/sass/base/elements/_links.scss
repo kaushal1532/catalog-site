@@ -1,0 +1,7 @@
+a {
+    text-decoration: none;
+    @include transition(0.4s);
+    &:focus, &:hover {
+        outline: none;
+    }
+}

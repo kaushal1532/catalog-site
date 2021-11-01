@@ -1,0 +1,76 @@
+//Font Size
+@mixin txt_small {font-size:12px;}
+@mixin txt_reg {font-size:14px;}
+@mixin txt_larg {font-size:16px;}
+@mixin txt_ex_larg {font-size:18px;}
+
+@mixin border_radius($value:5px) {-webkit-border-radius:$value; -moz-border-radius:$value; border-radius:$value;}
+@mixin border_box {-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+@mixin box_shadow($value:0 0 5px rgba(0, 0, 0, 0.5)) {-webkit-box-shadow:$value; -moz-box-shadow:$value; box-shadow:$value;}
+@mixin box_shadow_dark {-webkit-box-shadow:0 2px 5px 0 rgba(50, 50, 50, 0.8); -moz-box-shadow:0 2px 5px 0 rgba(50, 50, 50, 0.8); box-shadow:0 2px 5px 0 rgba(50, 50, 50, 0.8);}
+@mixin box_shadow_light {-webkit-box-shadow:0 2px 5px 0 rgba(200, 200, 200, 0.8); -moz-box-shadow:0 2px 5px 0 rgba(200, 200, 200, 0.8); box-shadow:0 2px 5px 0 rgba(200, 200, 200, 0.8);}
+@mixin cover {-webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover; background-position:center center; background-repeat:no-repeat;}
+@mixin transition($second:0.4s) {-webkit-transition:all $second ease; -moz-transition:all $second ease; -o-transition:all $second ease; -ms-transition:all $second ease; transition:all $second ease;}
+@mixin transition_color($second: 0.4s) {-webkit-transition: color $second ease; -moz-transition: color $second ease; -o-transition: color $second ease; -ms-transition: color $second ease; transition: color $second ease;}
+@mixin transition_background_color($second: 0.4s) {-webkit-transition: background-color $second ease; -moz-transition: background-color $second ease; -o-transition: background-color $second ease; -ms-transition: background-color $second ease; transition: background-color $second ease;}
+@mixin transition_colors($second: 0.4s) {-webkit-transition: color $second ease, background-color $second ease; -moz-transition: color $second ease, background-color $second ease; -o-transition: color $second ease, background-color $second ease; -ms-transition: color $second ease, background-color $second ease; transition: color $second ease, background-color $second ease;}
+@mixin transition_width($second: 0.4s) {-webkit-transition: width $second ease-in-out; -moz-transition: width $second ease-in-out; -o-transition: width $second ease-in-out; transition: width $second ease-in-out;}
+@mixin transition_delay($second: 0.4s) {-webkit-transition-delay: $second; -moz-transition-delay: $second; -o-transition-delay: $second; transition-delay: $second;}
+@mixin center {position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); -ms-transform: translateX(-50%) translateY(-50%); -webkit-transform: translateX(-50%) translateY(-50%);}
+@mixin center_unset {position: relative; top: unset; left: unset; transform: unset; -ms-transform: unset; -webkit-transform: unset;}
+@mixin hcenter {position: absolute; left: 50%; transform: translateX(-50%); -ms-transform: translateX(-50%); -webkit-transform: translateX(-50%);}
+@mixin hcenter_unset {position: relative; left: unset; transform: unset; -ms-transform: unset; -webkit-transform: unset;}
+@mixin vcenter {position: absolute; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -webkit-transform: translateY(-50%);}
+@mixin vcenter_unset {position: relative; top: unset; transform: unset; -ms-transform: unset; -webkit-transform: unset;}
+@mixin no_mar_pad {margin:0;padding:0;}
+@mixin btn_style {background-color: $grey; color: $white; @include my_font_regular; text-transform: uppercase; padding: 10px 15px;}
+@mixin background_gradient($value1:#9498bf, $value2: #6c3f97, $deg: 180deg) {background: -webkit-linear-gradient($deg, $value1, $value2);background: -o-linear-gradient($deg, $value1, $value2);background: -moz-linear-gradient($deg, $value1, $value2);background: linear-gradient($deg, $value1, $value2);}
+
+/** Bold **/
+@font-face {
+	font-family: 'Conv_DINCond-Bold';
+	src: url('./assets/fonts/DINCond-Bold.eot');
+	src: local('☺'), url('./assets/fonts/DINCond-Bold.woff') format('woff'), 
+  url('./assets/fonts/DINCond-Bold.ttf') format('truetype'), 
+  url('./assets/fonts/DINCond-Bold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/** Light **/
+@font-face {
+	font-family: 'Conv_DINCond-Light_0';
+	src: url('./assets/fonts/DINCond-Light_0.eot');
+	src: local('☺'), url('./assets/fonts/DINCond-Light_0.woff') format('woff'),
+   url('./assets/fonts/DINCond-Light_0.ttf') format('truetype'), 
+   url('./assets/fonts/DINCond-Light_0.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/** Regular **/
+@font-face {
+	font-family: 'Conv_DINCond-Regular';
+	src: url('./assets/fonts/DINCond-Regular.eot');
+	src: local('☺'), url('./assets/fonts/DINCond-Regular.woff') format('woff'), 
+	url('./assets/fonts/DINCond-Regular.ttf') format('truetype'), 
+	url('./assets/fonts/DINCond-Regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@mixin font_main {font-family: 'Conv_DINCond-Regular';}
+@mixin font_main_regular {@include font_main;}
+@mixin font_main_light {font-family: 'Conv_DINCond-Light_0';}
+@mixin font_main_bold {font-family: 'Conv_DINCond-Bold';}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Column width with margin
+@mixin column-width($numberColumns: 3) {
+	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
+}
