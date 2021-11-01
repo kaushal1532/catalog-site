@@ -147,7 +147,7 @@ get_header();
 				<div class="col-12 mt-0 mt-md-3 text-center">
 					<?php 
 						if(isset($why_choose_us_cta_button['url'])) {
-							$why_choose_us_cta_button_title = (isset($why_choose_us_cta_button['title']) && $why_choose_us_cta_button['title']!="") ? $why_choose_us_cta_button['title'] : __( 'Explore Our Products', 'kit_theme' );
+							$why_choose_us_kaushal = (isset($why_choose_us_cta_button['title']) && $why_choose_us_cta_button['title']!="") ? $why_choose_us_cta_button['title'] : __( 'Explore Our Products', 'kit_theme' );
 							$why_choose_us_cta_button_url = (isset($why_choose_us_cta_button['url']) && $why_choose_us_cta_button['url']!="") ? $why_choose_us_cta_button['url'] : '#';
 							$why_choose_us_cta_button_target = (isset($why_choose_us_cta_button['target']) && $why_choose_us_cta_button['target']!="") ? 'target="'.$why_choose_us_cta_button['target'].'"' : '';
 					?>
