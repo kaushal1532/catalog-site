@@ -205,3 +205,16 @@ function catalog_site_theme_setup() {
 }
 
 add_action( 'after_setup_theme', 'catalog_site_theme_setup' );
+add_action( 'after_setup_theme', 'catalog_site_theme_setup' );
+
+function catalog_site_theme_option_page() {
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+}
+
+add_action( 'init', 'catalog_site_theme_option_page' ); 
