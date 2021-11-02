@@ -157,8 +157,6 @@ get_header();
 			</div>
 		</div>
 	</section>
-
-
 	<!-- EOF Home Why Choose Us -->
 
 	<?php if( !empty($featured_products_ids) ) { ?>
@@ -170,57 +168,41 @@ get_header();
 					<h3 class="mb-4"><?php echo $featured_products_section_title; ?></h3>
 				</div>
 
-				<?php 
-					if( $featured_products->have_posts() ) {
-				?>
 				<!-- Featured Products List -->
 				<?php 
-					while( $featured_products->have_posts() ) { 
-						$featured_products->the_post();
-						$product_link = get_the_permalink();
-					?>
-				<div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-					<div class="card shadow rounded-0">
-						<a href="<?php echo $product_link; ?>">
-							<?php the_post_thumbnail( 'product-small-thumb', array(
-								"class" => "card-img-top"
-							) ); ?>
-						</a>
-						<div class="card-body">
-							<a href="<?php echo $product_link; ?>" class="text-dark text-decoration-none">
-								<h5 class="card-title text-capitalize"><?php the_title(); ?></h5>
-							</a>
-							<p class="card-text"><?php the_excerpt(); ?></p>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">
-								<small class="text-muted">
-									<b>Price:</b><span class="float-end"><?php the_field( 'price' ); ?></span>
-								</small>
-							</li>
-							<li class="list-group-item">
-								<small class="text-muted">
-									<b>Color:</b><span class="float-end">Red</span>
-								</small>
-							</li>
-							<li class="list-group-item">
-								<small class="text-muted">
-									<b>Size:</b><span class="float-end">XL</span>
-								</small>
-							</li>
-						</ul>
-						<div class="card-body">
-							<a href="<?php echo $product_link; ?>" class="btn btn-outline-primary"><?php _e( 'View Product', 'kit_theme' ); ?></a>
-						</div>
-					</div>
-				</div>
-				<?php } ?>
-				<!-- EOF Featured Products List -->
-				<?php 
+					if( $featured_products->have_posts() ) {
+						$product_image_args = array(
+							"class" => "card-img-top rounded-0"
+						);
+						$product_default_image = get_field( 'product_default_image', 'option' );
+						if ( $product_default_image!="" ) {
+							$product_default_image = wp_get_attachment_image( $product_default_image, 'product-small-thumb', false, $product_image_args );
+						}
+
+						$product_title_length = get_field( 'product_title_length', 'option' );
+						$product_excerpt_length = get_field( 'product_excerpt_length', 'option' );
+						$product_currency = get_field( 'product_currency', 'option' );
+                      
+
+						$args = array(
+							"product_image_args" => $product_image_args,
+							"product_default_image" => $product_default_image,
+							"product_title_length" => $product_title_length,
+							"product_excerpt_length" => $product_excerpt_length,
+							"product_currency" => $product_currency,
+							"product_col_class" => "col-md-6 col-lg-3 mb-4 mb-lg-0"
+						);
+                        
+					
+
+                        while( $featured_products->have_posts() ) { 
+							$featured_products->the_post();
+							get_template_part( 'template-parts/product', 'card', $args );
+						} 
 					} 
 					wp_reset_postdata(); 
 				?>
-
+				<!-- EOF Featured Products List -->
 				<?php 
 					if(isset($why_choose_us_cta_button['url'])) {
 						$featured_products_cta_button_title = (isset($featured_products_cta_button['title']) && $featured_products_cta_button['title']!="") ? $featured_products_cta_button['title'] : __( 'View All Products', 'kit_theme' );
