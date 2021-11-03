@@ -63,6 +63,30 @@ get_header();
 				$featured_products = new WP_Query( $args );
 			}			
 			/* EOF Featured Products section data */
+
+			/* Featured Blogs section data */
+			$featured_blogs_ids = get_field('featured_blogs', $post_id);
+			if( !empty($featured_blogs_ids) ) {
+				$featured_blogs_section_title = get_field('featured_blogs_section_title', $post_id);
+				if( $featured_blogs_section_title=="" ) {
+					$featured_blogs_section_title = __( 'Featured Blogs', 'kit_theme' );
+				}
+				$featured_blogs_cta_button = get_field('featured_blogs_cta_button', $post_id);
+
+				$args = array(
+					"post__in" 	=> $featured_blogs_ids,
+					"post_type" => "post"
+				);
+				$featured_blogs = new WP_Query( $args );
+			}			
+			/* EOF Blogs Products section data */
+
+			/* Newsletter section data */
+			$newsletter_title_text_above = get_field('newsletter_title_text_above', $post_id);
+			$newsletter_title = get_field('newsletter_title', $post_id);
+			$newsletter_content = get_field('newsletter_content', $post_id);
+			$newsletter_form_shortcode = get_field('newsletter_form_shortcode', $post_id);
+			/* EOF Newsletter section data */
 		?>
 	<!-- Home Banner -->
 	<section id="homeHero" class="home-hero-section bg-dark text-secondary py-5 text-center" <?php echo $banner_image_url; ?>>
@@ -180,22 +204,19 @@ get_header();
 						}
 
 						$product_title_length = get_field( 'product_title_length', 'option' );
-						$product_excerpt_length = get_field( 'product_excerpt_length', 'option' );
+						$post_excerpt_length = get_field( 'post_excerpt_length', 'option' );
 						$product_currency = get_field( 'product_currency', 'option' );
-                      
 
 						$args = array(
 							"product_image_args" => $product_image_args,
 							"product_default_image" => $product_default_image,
 							"product_title_length" => $product_title_length,
-							"product_excerpt_length" => $product_excerpt_length,
+							"post_excerpt_length" => $post_excerpt_length,
 							"product_currency" => $product_currency,
 							"product_col_class" => "col-md-6 col-lg-3 mb-4 mb-lg-0"
 						);
-                        
-					
 
-                        while( $featured_products->have_posts() ) { 
+						while( $featured_products->have_posts() ) { 
 							$featured_products->the_post();
 							get_template_part( 'template-parts/product', 'card', $args );
 						} 
@@ -204,13 +225,12 @@ get_header();
 				?>
 				<!-- EOF Featured Products List -->
 				<?php 
-					if(isset($why_choose_us_cta_button['url'])) {
+					if(isset($featured_products_cta_button['url'])) {
 						$featured_products_cta_button_title = (isset($featured_products_cta_button['title']) && $featured_products_cta_button['title']!="") ? $featured_products_cta_button['title'] : __( 'View All Products', 'kit_theme' );
 						$featured_products_cta_button_url = (isset($featured_products_cta_button['url']) && $featured_products_cta_button['url']!="") ? $featured_products_cta_button['url'] : '#';
 						$featured_products_cta_button_target = (isset($featured_products_cta_button['target']) && $featured_products_cta_button['target']!="") ? 'target="'.$featured_products_cta_button['target'].'"' : '';
 					?>
 				<div class="col-12 mt-4 text-center">
-				
 						<a href="<?php echo $featured_products_cta_button_url; ?>" class="btn btn-outline-primary"<?php echo $featured_products_cta_button_target; ?>><?php echo $featured_products_cta_button_title; ?></a>
 				</div>
 				<?php } ?>
@@ -220,80 +240,58 @@ get_header();
 	<!-- EOF Home Featured Products -->
 	<?php } ?>
 
+	<?php if( !empty($featured_blogs_ids) || $featured_blogs->have_posts()) { 
+			$post_image_args = array(
+				"class" => "card-img-top rounded-0"
+			);
+		?>
 	<!-- Featured Blogs -->
 	<section id="homeFeaturedBlogs" class="home-featured-blogs bg-light py-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h3 class="mb-4">Featured Blogs</h3>
+					<h3 class="mb-4"><?php echo $featured_blogs_section_title; ?></h3>
 					<div class="row">
 						<div class="col-md-5">
-							<div class="card shadow rounded-0">
-								<a href="./blog.html">
-									<img src="https://dummyimage.com/550x330/f8f9fa/6c757d.jpg" class="card-img-top" alt="post title">
-								</a>
-								<div class="card-body">
-									<strong class="d-inline-block mb-2 text-primary">Category Name</strong>
-									<a href="./blog.html" class="text-dark text-decoration-none">
-										<h5 class="card-title text-capitalize mb-0">Post Title</h5>
-									</a>
-									<div class="mb-1 text-muted">Nov 12</div>
-									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nunc purus. Cras ut tempus diam, nec convallis mauris. Etiam a mollis odio.</p>
-									<a href="./blog.html" class="btn btn-outline-primary">Read More</a>
-								</div>
-							</div>
+							<?php 
+								while ($featured_blogs->have_posts()) {
+									$featured_blogs->the_post();
+									$args = array(
+										'post_card_type' => 'featured'
+									);
+									get_template_part( 'template-parts/post', 'card', $args );
+									break;
+								}
+							?>
 						</div>
 						<div class="col-md-7">
-							<div class="card shadow rounded-0 mb-4">
-								<div class="row g-0">
-									<div class="col-md-4">
-										<a href="./blog.html">
-											<img src="https://dummyimage.com/250x250/f8f9fa/6c757d.jpg" class="img-fluid w-100 h-100" alt="post title">
-										</a>
-									</div>
-									<div class="col-md-8">
-										<div class="card-body">
-											<strong class="d-inline-block mb-2 text-primary">Category Name</strong>
-											<a href="./blog.html" class="text-dark text-decoration-none">
-												<h5 class="card-title text-capitalize mb-0">Post Title</h5>
-											</a>
-											<div class="mb-1 text-muted">Nov 12</div>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nunc purus. Cras ut tempus diam, nec convallis mauris. Etiam a mollis odio.</p>
-											<a href="./blog.html" class="btn btn-outline-primary">Read More</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card shadow rounded-0">
-								<div class="row g-0">
-									<div class="col-md-4">
-										<a href="./blog.html">
-											<img src="https://dummyimage.com/250x250/f8f9fa/6c757d.jpg" class="img-fluid w-100 h-100" alt="post title">
-										</a>
-									</div>
-									<div class="col-md-8">
-										<div class="card-body">
-											<strong class="d-inline-block mb-2 text-primary">Category Name</strong>
-											<a href="./blog.html" class="text-dark text-decoration-none">
-												<h5 class="card-title text-capitalize mb-0">Post Title</h5>
-											</a>
-											<div class="mb-1 text-muted">Nov 12</div>
-											<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nunc purus. Cras ut tempus diam, nec convallis mauris. Etiam a mollis odio.</p>
-											<a href="./blog.html" class="btn btn-outline-primary">Read More</a>
-										</div>
-									</div>
-								</div>
-							</div>
+							<?php 
+								$i = 0;
+								while ($featured_blogs->have_posts()) {
+									$featured_blogs->the_post();
+									get_template_part( 'template-parts/post', 'card' );
+									$i++; 
+								}
+							?>
 						</div>
+
+						<?php 
+							if(isset($featured_blogs_cta_button['url'])) {
+								$featured_blogs_cta_button_title = (isset($featured_blogs_cta_button['title']) && $featured_blogs_cta_button['title']!="") ? $featured_blogs_cta_button['title'] : __( 'View All Blogs', 'kit_theme' );
+								$featured_blogs_cta_button_url = (isset($featured_blogs_cta_button['url']) && $featured_blogs_cta_button['url']!="") ? $featured_blogs_cta_button['url'] : '#';
+								$featured_blogs_cta_button_target = (isset($featured_blogs_cta_button['target']) && $featured_blogs_cta_button['target']!="") ? 'target="'.$featured_blogs_cta_button['target'].'"' : '';
+							?>
 						<div class="col-12 mt-4 text-center">
-							<a href="./blogs.html" class="btn btn-outline-primary">View All Blogs</a>
+								<a href="<?php echo $featured_blogs_cta_button_url; ?>" class="btn btn-outline-primary"<?php echo $featured_blogs_cta_button_target; ?>><?php echo $featured_blogs_cta_button_title; ?></a>
 						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- EOF Featured Blogs -->
+	<?php } wp_reset_postdata();  ?>
 
 	<!-- Newsletter -->
 	<section id="newsLetter" class="catalog-newsletter my-5">
@@ -301,17 +299,12 @@ get_header();
 			<div class="py-5 bg-light text-center">
 				<div class="row">
 					<div class="col-11 col-md-8 col-lg-5 mx-auto">
-						<span>Subscribe to Our</span>
-						<h3>Newsletter</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in nunc purus. Cras ut tempus diam, nec convallis mauris.</p>
-						<form method="post">
-							<div class="input-group mb-3">
-								<input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-addon2">
-								<span class="input-group-text">
-									<button class="btn" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
-								</span>
-							</div>
-						</form>
+						<span><?php echo $newsletter_title_text_above; ?></span>
+						<h3><?php echo $newsletter_title; ?></h3>
+						<p><?php echo $newsletter_content; ?></p>
+						<?php 
+							echo do_shortcode($newsletter_form_shortcode);
+						?>
 					</div>
 				</div>
 			</div>

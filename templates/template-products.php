@@ -16,12 +16,15 @@ get_header();
 	$args = array(
 		"post_type" => "product"
 	);
+    
 	$products = new WP_Query( $args );
-
+    
 	while ( have_posts() ) :
 		the_post();
 			$post_id = get_the_ID();
+    
 ?>
+   
 		<!-- Banner -->
         <section id="pageBanner" class="page-banner bg-dark py-4 py-md-5">
             <div class="container">
