@@ -25,9 +25,9 @@ get_header();
 				$banner_image_url = 'style="background-image: url('.$banner_image_url.'); background-size: cover;background-position: center;"';
 			}
 			$banner_name = get_field('banner_name', $post_id);
-			$banner_title_text_above = get_field('banner_title_text_above', $post_id);
+			$banner_title_text_above = get_field('banner_title_text_above',$post_id);
 			$banner_title = get_field('banner_title', $post_id);
-			$banner_button = get_field('banner_button', $post_id);
+			$banner_button = get_field('banner_button',$post_id);
 			$banner_content = get_field('banner_content', $post_id);
 			/* EOF Banner section data */
 
