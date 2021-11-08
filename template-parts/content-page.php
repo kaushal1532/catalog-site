@@ -10,13 +10,15 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if ( ! is_front_page() && ! is_home() ) { ?>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
-	<?php } ?>
 
-	<?php catalog_site_post_thumbnail(); ?>
+	<?php 
+		the_post_thumbnail( array(
+			860,
+			410
+		), array(
+			"class" => "img-fluid mb-3"
+		) )
+	?>
 
 	<div class="entry-content">
 		<?php

@@ -13,45 +13,96 @@
  */
 
 get_header();
+
+$args = array(
+	'banner_title' => 'Blogs'
+);
+get_template_part( 'template-parts/page', 'banner', $args );
 ?>
 
-	<main id="primary" class="site-main">
 
-		<?php
-		if ( have_posts() ) :
+	<!-- Page Content -->
+	<section id="pageContent" class="page-content py-5">
+		<div class="container">
+			<div class="row">
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+				<!-- Post List Section -->
+				<div class="col-md-9">
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+					<?php if ( have_posts() ) : ?>
+					<!-- Blog List Section -->
+					<div class="row">
+						<?php 
+							/* Start the Loop */
+							while ( have_posts() ) :
+								the_post();
+						?>
+						<div class="col-12">
+							<?php 
+								/*
+								* Include the Post-Type-specific template for the content.
+								* If you want to override this in a child theme, then include a file
+								* called content-___.php (where ___ is the Post Type name) and that will be used instead.
+								*/
+								get_template_part( 'template-parts/content', get_post_type() );
+							?>
+						</div>
+						<?php 
+							endwhile;
+						?>
+					</div>
+					<!-- EOF Blog List Section -->
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+					<!-- Load More -->
+					<div class="text-center">
+						<a href="#" class="btn btn-outline-primary">Load More</a>
+					</div>
+					<!-- EOF Load More -->
 
-			endwhile;
+					<?php
+					else :
+						get_template_part( 'template-parts/content', 'none' );			
+					endif;
+					?>
+				</div>
+				<!-- EOF Post List Section -->
 
-			the_posts_navigation();
+				<!-- Sidebar -->
+				<div class="col-md-3 mb-5 mb-md-0">
+					<div class="position-sticky" style="top: 2rem;">
+						<?php // get_sidebar(); ?>
+						<!-- Search -->
+						<div class="card mb-3 rounded-0">
+							<div class="card-header bg-light">Search</div>
+							<div class="card-body">
+								<div class="input-group ">
+									<input type="text" class="form-control" placeholder="Enter Text" aria-describedby="button-addon2">
+									<span class="input-group-text bg-light">
+										<button class="btn m-0 p-0" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<!-- EOF Search -->
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
+						<!-- Category Filter -->
+						<div class="card mb-3 rounded-0">
+							<div class="card-header bg-light">
+								Category
+							</div>
+							<div class="list-group border-0 rounded-0">
+								<a href="#" class="list-group-item list-group-item-action">Category 1</a>
+								<a href="#" class="list-group-item list-group-item-action">Category 2</a>
+								<a href="#" class="list-group-item list-group-item-action">Category 3</a>
+							</div>
+						</div>
+						<!-- EOF Category Filter -->
+					</div>
+				</div>
+				<!-- EOF Sidebar -->
+			</div>
+		</div>
+	</section>
+	<!-- EOF Page Content -->
 <?php
-get_sidebar();
 get_footer();
