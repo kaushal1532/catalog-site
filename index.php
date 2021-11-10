@@ -31,7 +31,7 @@ get_template_part( 'template-parts/page', 'banner', $args );
 
 					<?php if ( have_posts() ) : ?>
 					<!-- Blog List Section -->
-					<div class="row">
+					<div class="row blogs-data">
 						<?php 
 							/* Start the Loop */
 							while ( have_posts() ) :
@@ -55,7 +55,7 @@ get_template_part( 'template-parts/page', 'banner', $args );
 
 					<!-- Load More -->
 					<div class="text-center">
-						<a href="#" class="btn btn-outline-primary">Load More</a>
+						<a href="#" class="btn btn-outline-primary load-more-blogs"><?php _e( 'Load More', 'kit_theme' ); ?></a>
 					</div>
 					<!-- EOF Load More -->
 
@@ -70,33 +70,7 @@ get_template_part( 'template-parts/page', 'banner', $args );
 				<!-- Sidebar -->
 				<div class="col-md-3 mb-5 mb-md-0">
 					<div class="position-sticky" style="top: 2rem;">
-						<?php // get_sidebar(); ?>
-						<!-- Search -->
-						<div class="card mb-3 rounded-0">
-							<div class="card-header bg-light">Search</div>
-							<div class="card-body">
-								<div class="input-group ">
-									<input type="text" class="form-control" placeholder="Enter Text" aria-describedby="button-addon2">
-									<span class="input-group-text bg-light">
-										<button class="btn m-0 p-0" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
-									</span>
-								</div>
-							</div>
-						</div>
-						<!-- EOF Search -->
-
-						<!-- Category Filter -->
-						<div class="card mb-3 rounded-0">
-							<div class="card-header bg-light">
-								Category
-							</div>
-							<div class="list-group border-0 rounded-0">
-								<a href="#" class="list-group-item list-group-item-action">Category 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Category 2</a>
-								<a href="#" class="list-group-item list-group-item-action">Category 3</a>
-							</div>
-						</div>
-						<!-- EOF Category Filter -->
+						<?php get_sidebar(); ?>
 					</div>
 				</div>
 				<!-- EOF Sidebar -->

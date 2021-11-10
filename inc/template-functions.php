@@ -205,7 +205,6 @@ function catalog_site_theme_setup() {
 }
 
 add_action( 'after_setup_theme', 'catalog_site_theme_setup' );
-add_action( 'after_setup_theme', 'catalog_site_theme_setup' );
 
 function catalog_site_theme_option_page() {
 	acf_add_options_page(array(
@@ -217,4 +216,30 @@ function catalog_site_theme_option_page() {
 	));
 }
 
-add_action( 'init', 'catalog_site_theme_option_page' ); 
+add_action( 'init', 'catalog_site_theme_option_page' );
+
+add_action("wp_ajax_load_more_blogs", "load_more_blogs_callback");
+add_action("wp_ajax_nopriv_load_more_blogs", "load_more_blogs_callback");
+
+function load_more_blogs_callback() {
+    $args = array(
+        "paged" => $_REQUEST['paged']
+    );
+    $wp_query = new WP_Query($args);
+
+    if ( !$wp_query->have_posts() ) {
+        die();
+    }
+    ob_start();
+    while ( $wp_query->have_posts() ) {
+        $wp_query->the_post();
+        ?>
+        <div class="col-12">
+            <?php echo get_template_part( 'template-parts/post', 'card' ); ?>
+        </div>
+        <?php
+    }
+    $html = ob_get_contents();
+    ob_end_clean();
+    die($html);
+}
