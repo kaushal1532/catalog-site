@@ -1,5 +1,3 @@
-
-   
 <?php
 /**
  * Catalog Site functions and definitions
