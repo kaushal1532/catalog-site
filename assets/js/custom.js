@@ -5,13 +5,18 @@
 
     $(".load-more-blogs").on("click", function(e) {
         e.preventDefault();
+        let query_filter = $(this).attr("data-query_filter");
+        if (query_filter != "") {
+            query_filter = JSON.parse(query_filter);
+        }
         myAjax.blogs_paged = parseInt(myAjax.blogs_paged) + 1
         jQuery.ajax({
             type: "post",
             url: myAjax.ajaxurl,
             data: {
                 action: "load_more_blogs",
-                paged: myAjax.blogs_paged
+                paged: myAjax.blogs_paged,
+                query_filter: query_filter
             },
             success: function(response) {
                 if (response == "") {

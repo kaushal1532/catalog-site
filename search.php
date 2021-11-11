@@ -24,6 +24,8 @@ get_header();
 			</header><!-- .page-header -->
 
 			<?php
+			global $wp_query;
+			echo '<pre>'.print_r( $wp_query , true).'</pre>';
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();

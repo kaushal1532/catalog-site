@@ -39,9 +39,13 @@
 	</div>
 	<div class="list-group border-0 rounded-0">
 		<?php 
+			$current_cat = "";
+			if ( is_category() ) {
+				$current_cat = get_query_var( 'cat' );
+			}
 			foreach ( $categories as $category ) {
 		?>
-		<a href="<?php echo get_term_link( $category ); ?>" class="list-group-item list-group-item-action"><?php echo $category->name ?></a>
+		<a href="<?php echo get_term_link( $category ); ?>" class="list-group-item list-group-item-action <?php echo ($current_cat==$category->term_id) ? 'active' : '';?>"><?php echo $category->name ?></a>
 		<?php 
 			} 
 		?>

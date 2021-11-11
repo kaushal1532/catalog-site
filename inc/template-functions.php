@@ -225,6 +225,10 @@ function load_more_blogs_callback() {
     $args = array(
         "paged" => $_REQUEST['paged']
     );
+    if ( isset($_REQUEST['query_filter']) && $_REQUEST['query_filter']!="" ) {
+        $query_filter = $_REQUEST['query_filter'];
+        $args = array_merge($args, $query_filter);
+    }
     $wp_query = new WP_Query($args);
 
     if ( !$wp_query->have_posts() ) {
