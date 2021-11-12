@@ -22,7 +22,7 @@ if ( $is_featured ) {
 $post_id = get_the_ID();
 $post_link = get_the_permalink();
 $post_image = get_the_post_thumbnail( $post_id, $post_size, $post_image_args );
-$post_category_terms = get_the_terms( $product_id, 'category' );
+$post_category_terms = get_the_terms( $post_id, 'category' );
 $post_category = array();
 if( !is_wp_error( $post_category_terms ) && !empty( $post_category_terms ) ) {
     foreach ( $post_category_terms as $post_category_term ) {
