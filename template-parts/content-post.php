@@ -18,7 +18,7 @@ if( is_category() ) {
     }
 } elseif ( is_search() ) {
     $args['banner_title'] = __( 'Search Results for:', 'kit_theme' ).' '. get_search_query();
-} else {
+} elseif ( is_single() ) {
     $args['banner_title'] = get_the_title();
 }
 get_template_part( 'template-parts/page', 'banner', $args );
