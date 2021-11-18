@@ -41,11 +41,15 @@ get_header();
     }
     /* EOF get product categories, color and size in one function */
 
+    $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 	$args = array(
-		"post_type" => "product"
+		"post_type" => "product",
+        "orderby"   => "ID",
+        "order"     => "DESC",
+        "paged"     => $paged
 	);
 
-    /* Filter and sorting process */
+    /* Filter process */
     $is_product_filter = ( isset( $_GET['product_filter'] ) && $_GET['product_filter'] == "1" ) ? true : false;
     $filter_url_args = array();
     if( $is_product_filter ) {
@@ -150,9 +154,31 @@ get_header();
         /* EOF Apply tax query in args */
 
     }
-    /* EOF Filter and sorting process */
+    /* EOF Filter process */
+
+    /* Sorting process */
+    $product_sort = ( isset( $_GET['product_sort'] ) && ( $_GET['product_sort'] == "price_low_to_high" || $_GET['product_sort'] == "price_high_to_low" ) ) ? $_GET['product_sort'] : false;
+    if ( $product_sort !== false ) {
+        $args['orderby'] = "meta_value_num";
+        $args['meta_key'] = "price";
+        $args['order'] = ( $product_sort == "price_high_to_low" ) ? 'DESC' : 'ASC';
+    }
+    /* EOF Sorting process */
 
 	$products = new WP_Query( $args );
+
+    $big = 999999999; // need an unlikely integer
+    $products_paginate_links = paginate_links( array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format' => '?paged=%#%',
+        'current' => max( 1, get_query_var('paged') ),
+        'total' => $products->max_num_pages,
+        'next_text' => '<span class="page-link"><i class="bi bi-chevron-compact-right"></i></span>',
+        'prev_text' => '<span class="page-link"><i class="bi bi-chevron-compact-left"></i></span>',
+        'before_page_number' => '<span class="page-link">',
+        'after_page_number' => '</span>',
+        'type' => 'array'
+    ) );
 
 	while ( have_posts() ) :
 		the_post();
@@ -260,6 +286,23 @@ get_header();
 
                             <button type="submit" class="btn btn-outline-primary"><?php _e( 'Apply Filter', 'kit_theme' ); ?></button>
                             <input type="hidden" name="product_filter" value="1">
+                            <?php 
+                                foreach ($_GET as $key => $value) {
+                                    $not_allowed_url_keys = array(
+                                        'product_filter',
+                                        'product_search',
+                                        'price_min',
+                                        'price_max',
+                                        'product_category',
+                                        'product_color',
+                                        'product_size'
+                                    );
+                                    if ( in_array( $key, $not_allowed_url_keys ) ) {
+                                        continue;
+                                    }
+                                    echo '<input type="hidden" name="'.$key.'" value="'.$value.'">';
+                                }
+                            ?>
                         </form>
                     </div>
                     <!-- EOF Products Sidebar -->
@@ -271,13 +314,43 @@ get_header();
                         <div class="d-inline-block float-end">
                             <div class="dropdown">
                                 <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <?php _e( 'Newest First', 'kit_theme' ); ?>
+                                    <?php 
+                                        switch ($product_sort) {
+                                            case 'price_low_to_high':
+                                                _e( 'Price Low to High', 'kit_theme' );
+                                            break;
+                                            case 'price_high_to_low':
+                                                _e( 'Price High to Low', 'kit_theme' );
+                                            break;
+                                            default:
+                                                _e( 'Newest First', 'kit_theme' ); 
+                                            break;
+                                        }
+                                    ?>
                                 </a>
-                              
+                                <?php
+                                    $sord_url_args = $_GET;
+                                    $sord_url_args['product_sort'] = 'price_low_to_high';
+                                    $sord_url_price_low_to_high = add_query_arg( $sord_url_args, $page_url );
+                                    $sord_url_args['product_sort'] = 'price_high_to_low';
+                                    $sord_url_price_high_to_low = add_query_arg( $sord_url_args, $page_url );
+                                ?>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <li><a class="dropdown-item" href="#"><?php _e( 'Newest First', 'kit_theme' ); ?></a></li>
-                                  <li><a class="dropdown-item" href="#"><?php _e( 'Price Low to High', 'kit_theme' ); ?></a></li>
-                                  <li><a class="dropdown-item" href="#"><?php _e( 'Price High to Low', 'kit_theme' ); ?></a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="<?php echo $page_url; ?>">
+                                            <?php _e( 'Newest First', 'kit_theme' ); ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="<?php echo $sord_url_price_low_to_high; ?>">
+                                            <?php _e( 'Price Low to High', 'kit_theme' ); ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="<?php echo $sord_url_price_high_to_low; ?>">
+                                            <?php _e( 'Price High to Low', 'kit_theme' ); ?>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -318,21 +391,21 @@ get_header();
                         </div>
                         <!-- EOF Products List Section -->
 
+                        <?php 
+                            if( isset ( $products_paginate_links ) && ! empty ($products_paginate_links) ) {
+                        ?>
                         <!-- Pagination -->
                         <nav aria-label="Page navigation example">
                             <ul class="pagination mb-0">
+                                <?php foreach ($products_paginate_links as $paginate_link) { ?>
                                 <li class="page-item">
-                                    <a class="page-link" href="#"><i class="bi bi-chevron-compact-left"></i></a>
+                                    <?php echo $paginate_link; ?>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="bi bi-chevron-compact-right"></i></a>
-                                </li>
+                                <?php } ?>
                             </ul>
                         </nav>
                         <!-- EOF Pagination -->
+                        <?php } ?>
                     </div>
                     <!-- EOF Products List Section -->
                 </div>
