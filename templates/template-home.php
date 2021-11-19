@@ -25,16 +25,16 @@ get_header();
 				$banner_image_url = 'style="background-image: url('.$banner_image_url.'); background-size: cover;background-position: center;"';
 			}
 			$banner_name = get_field('banner_name', $post_id);
-			$banner_title_text_above = get_field('banner_title_text_above',$post_id);
+			$banner_title_text_above = get_field('banner_title_text_above', $post_id);
 			$banner_title = get_field('banner_title', $post_id);
-			$banner_button = get_field('banner_button',$post_id);
+			$banner_button = get_field('banner_button', $post_id);
 			$banner_content = get_field('banner_content', $post_id);
 			/* EOF Banner section data */
 
 			/* About Us section data */
 			$about_us_image = get_field('about_us_section_image', $post_id);
 			if( $about_us_image!="" ) {
-				$about_us_image = wp_get_attachment_image($about_us_image, array(450, 260));
+				$about_us_image = wp_get_attachment_image($about_us_image, array(450, 260), false, array( "class" => "img-fluid" ));
 			}
 			$about_us_title = get_field('about_us_section_title', $post_id);
 			$about_us_button = get_field('about_us_section_button', $post_id);

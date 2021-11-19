@@ -247,3 +247,28 @@ function load_more_blogs_callback() {
     ob_end_clean();
     die($html);
 }
+
+function get_page_id_by_template ( $template_path ) {
+    if ( $template_path == "" ) {
+        return false;
+    }
+
+    global $wpdb;
+    $result = $wpdb->get_row( "SELECT `post_id` FROM {$wpdb->prefix}postmeta WHERE meta_key = '_wp_page_template' && meta_value= '$template_path'", OBJECT );
+   
+    if ( is_wp_error( $result ) || empty( $result ) || !isset( $result->post_id ) ) {
+        return false;
+    }
+    return $result->post_id;
+    
+}
+
+
+function get_page_url_by_template( $template_path ) {
+    $post_id = get_page_id_by_template ( $template_path );
+    if ( $post_id === false ) {
+        return "";
+    }
+    return get_the_permalink( $post_id );
+   
+}

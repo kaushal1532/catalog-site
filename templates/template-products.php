@@ -21,6 +21,8 @@ get_header();
             'product-color'
         )
     ) );
+    
+    
     $product_category = $product_size = $product_color = array();
     if ( !is_wp_error( $product_terms ) && !empty( $product_terms ) ) {
         foreach ($product_terms as $product_term) {
@@ -48,6 +50,7 @@ get_header();
         "order"     => "DESC",
         "paged"     => $paged
 	);
+      
 
     /* Filter process */
     $is_product_filter = ( isset( $_GET['product_filter'] ) && $_GET['product_filter'] == "1" ) ? true : false;
@@ -60,6 +63,8 @@ get_header();
             $args["s"] = $product_search;
             $filter_url_args['product_search'] = $product_search;
         }
+        // echo '<pre>'; print_r($product_search); echo '</pre>';
+        
         /* EOF Product Search args */
 
         /* Product price filter args */
@@ -100,6 +105,8 @@ get_header();
         if ( $product_category_filter !== false ) {
             $product_category_tax_query = array(
                 'taxonomy' => 'product-category',
+
+
                 'field'    => 'slug',
                 'terms'    => $product_category_filter
             );

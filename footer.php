@@ -19,7 +19,7 @@
 				<p class="p-0 mb-3 m-md-0">&copy; Catalog Site 2021. All Rights Reserved.</p>
 			</div>
 			<div class="col-md-6 text-center text-md-end">
-				<p class="p-0 m-0">Design and Develop by <a href="https://github.com/kaushal1532" target="_blank" class="text-decoration-none text-danger">kaushal panchal</a></p>
+				<p class="p-0 m-0">Design and Develop by <a href="https://github.com/kaushal1532 target="_blank" class="text-decoration-none text-danger">kaushal panchal</a></p>
 			</div>
 		</div>
 	</div>
